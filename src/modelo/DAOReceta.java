@@ -18,14 +18,17 @@ import java.util.logging.Logger;
  */
 public class DAOReceta {
     private static final String SQL_SELECT = "SELECT id_receta, nombre_receta, porciones, "
-            + "nota, fecha FROM receta WHERE nombre_receta=?";
+            + "nota, fecha ,tiempo,temperatura FROM receta WHERE nombre_receta=?";
+    private static final String SQL_SELECT_ID = "SELECT id_receta, nombre_receta, porciones, "
+            + "nota, fecha ,tiempo,temperatura FROM receta WHERE id_receta=?";
     private static final String SQL_SELECT_ALL = "SELECT id_receta, nombre_receta, porciones, "
-            + "nota, fecha FROM receta";
+            + "nota, fecha ,tiempo,temperatura FROM receta";
     private static final String SQL_SEARCH_ID = "SELECT id_receta FROM receta WHERE nombre_receta=?";
     private static final String SQL_SEARCH_ID_INGRE = "SELECT id_ingredientes FROM ingredientes WHERE nombre_ingrediente=?";
     private static final String SQL_INNER = "SELECT i.id_ingredientes,i.nombre_ingrediente,ri.Cantidad "
             + "FROM receta r INNER JOIN receta_ingredientes ri ON r.id_receta=ri.recetaid_receta "
             + "INNER JOIN ingredientes i ON ri.ingredientesid_ingredientes=i.id_ingredientes WHERE r.id_receta=?;";
+    private static final String SQL_UPDATE ="UPDATE receta SET nombre_receta=?,porciones=?,nota=?,fecha =? ,tiempo=?,temperatura=? WHERE id_receta=?;";
     private static final Conexion con=Conexion.saberEstado();
     
     public ArrayList<Receta> readAll(){
@@ -37,7 +40,7 @@ public class DAOReceta {
             ps=con.getCon().prepareStatement(SQL_SELECT_ALL);
             rs=ps.executeQuery();
             while(rs.next()){
-                r=new Receta(rs.getInt(1), rs.getInt(3), rs.getString(2), rs.getString(4), rs.getString(5));
+                r=new Receta(rs.getInt(1), rs.getInt(3), rs.getString(2), rs.getString(4), rs.getString(6), rs.getString(7), rs.getString(5));
                 lista.add(r);
             }
         } catch (SQLException ex) {
@@ -56,7 +59,26 @@ public class DAOReceta {
             ps.setString(1, r.getNombre());
             rs=ps.executeQuery();
             while(rs.next()){
-                re=new Receta(rs.getInt(1), rs.getInt(3), rs.getString(2), rs.getString(4), rs.getString(5));
+                re=new Receta(rs.getInt(1), rs.getInt(3), rs.getString(2), rs.getString(4), rs.getString(6), rs.getString(7), rs.getString(5));
+            }
+            return re;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            con.cerrarConexion();
+        }
+         return re;
+    }
+    public Receta readId(Receta r) {
+        PreparedStatement ps;
+        ResultSet rs;
+        Receta re=null;
+        try {
+            ps=con.getCon().prepareStatement(SQL_SELECT_ID);
+            ps.setInt(1, r.getId());
+            rs=ps.executeQuery();
+            while(rs.next()){
+                re=new Receta(rs.getInt(1), rs.getInt(3), rs.getString(2), rs.getString(4), rs.getString(6), rs.getString(7), rs.getString(5));
             }
             return re;
         } catch (SQLException ex) {
@@ -126,5 +148,25 @@ public class DAOReceta {
             con.cerrarConexion();
         }
         return in;
+    }
+    public void update(Receta r){
+        Ingrediente in = null;
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps=con.getCon().prepareStatement(SQL_UPDATE);
+            ps.setString(1, r.getNombre());
+            ps.setInt(2, r.getPorciones());
+            ps.setString(3, r.getNotas());
+            ps.setString(4, r.getF().fecha());
+            ps.setString(5, r.getTiempo());
+            ps.setString(6, r.getTemperatura());
+            ps.setInt(7, r.getId());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            con.cerrarConexion();
+        }
     }
 }

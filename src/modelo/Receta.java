@@ -23,7 +23,7 @@ public class Receta {
     public Receta() {
     }
 
-        public Receta(int id, int porciones, String nombre, String notas,String fecha) {
+    public Receta(int id, int porciones, String nombre, String notas,String fecha) {
         this.id = id;
         this.porciones = porciones;
         this.nombre = nombre;
@@ -31,6 +31,26 @@ public class Receta {
         this.f = new Fecha(fecha);
     }
 
+    public Receta(int id, int porciones, String nombre, String notas, String tiempo, String temperatura, String f) {
+        this.id = id;
+        this.porciones = porciones;
+        this.nombre = nombre;
+        this.notas = notas;
+        this.tiempo = tiempo;
+        this.temperatura = temperatura;
+        this.f = new Fecha(f);
+    }
+
+    public Receta(int id, int porciones, String nombre, String notas, String tiempo, String temperatura) {
+        this.id = id;
+        this.porciones = porciones;
+        this.nombre = nombre;
+        this.notas = notas;
+        this.tiempo = tiempo;
+        this.temperatura = temperatura;
+        this.f = new Fecha();
+    }
+    
         
     public String getTiempo() {
         return tiempo;

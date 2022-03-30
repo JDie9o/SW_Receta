@@ -22,11 +22,11 @@ public class VistaModificar extends javax.swing.JFrame {
      */
     public VistaModificar() {
         initComponents();
-        
+
         DAOReceta receta = new DAOReceta();
         ArrayList<Receta> daoReceta = receta.readAll();
-        for(Receta lista:daoReceta){
-            System.out.println(lista.getNombre()+"\n");
+        for (Receta lista : daoReceta) {
+            System.out.println(lista.getNombre() + "\n");
             jComboBox1.addItem(lista.getNombre());
         }
         this.setLocationRelativeTo(null);
@@ -253,6 +253,11 @@ public class VistaModificar extends javax.swing.JFrame {
                 "Ingrediente", "Cantidad"
             }
         ));
+        tbIngredientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbIngredientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbIngredientes);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -369,7 +374,9 @@ public class VistaModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTempActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-      
+        DAOReceta dao = new DAOReceta();
+        Receta receta = new Receta(Integer.parseInt(lblIdReceta.getText()), Integer.parseInt(txtPorciones.getText()), txtNombre.getText(), txtNotas.getText(), txtTiempo.getText(), txtTemp.getText());
+        dao.update(receta);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -384,27 +391,27 @@ public class VistaModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        VistaPnd v=new VistaPnd();
+        VistaPnd v = new VistaPnd();
         this.setVisible(false);
         v.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        String nombre=jComboBox1.getSelectedItem().toString();
+        String nombre = jComboBox1.getSelectedItem().toString();
         Receta rece = new Receta();
         rece.setNombre(nombre);
-        
+
         DAOReceta receta = new DAOReceta();
         ArrayList<Ingrediente> lista = receta.readIn(receta.searchId(rece));
-        lblIdReceta.setText(receta.searchId(rece).getId()+"");
+        lblIdReceta.setText(receta.searchId(rece).getId() + "");
         DefaultTableModel modelo = new DefaultTableModel();
         tbIngredientes.setModel(modelo);
         modelo.addColumn("INGREDIENTE");
         modelo.addColumn("CANTIDAD");
-        for (Ingrediente i:lista) {
-            Object fila[]=new Object[2];
-            fila[0]=i.getNombre();
-            fila[1]=i.getCantidad();
+        for (Ingrediente i : lista) {
+            Object fila[] = new Object[2];
+            fila[0] = i.getNombre();
+            fila[1] = i.getCantidad();
             modelo.addRow(fila);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -412,6 +419,26 @@ public class VistaModificar extends javax.swing.JFrame {
     private void txtTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTiempoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTiempoActionPerformed
+
+    private void tbIngredientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngredientesMouseClicked
+        int fila = tbIngredientes.getSelectedRow();
+        Ingrediente i = new Ingrediente();
+        DAOReceta dao = new DAOReceta();
+        i.setNombre(tbIngredientes.getValueAt(fila, 0).toString());
+        String cant= tbIngredientes.getValueAt(fila, 1).toString();
+        float num = Float.parseFloat(cant);
+        i.setCantidad((int)(num));
+        lblIdIngrediente.setText(String.valueOf(dao.searchIdIngre(i).getId()));
+        Receta r= new Receta();
+        r.setId(Integer.valueOf(lblIdReceta.getText()));
+        Receta re =dao.readId(r);
+        txtNombre.setText(re.getNombre());
+        txtPorciones.setText(re.getPorciones()+"");
+        txtNotas.setText(re.getNotas()+"");
+        txtTemp.setText(re.getTemperatura()+"");
+        
+        txtTiempo.setText(re.getTiempo()+"");
+    }//GEN-LAST:event_tbIngredientesMouseClicked
 
     /**
      * @param args the command line arguments
