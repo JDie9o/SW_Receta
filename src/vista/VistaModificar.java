@@ -49,7 +49,7 @@ public class VistaModificar extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtTemp = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        btnIngresar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -112,7 +112,7 @@ public class VistaModificar extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Crear Receta");
+        jLabel1.setText("Modificar Receta");
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pics/Delete-80_icon-icons.com_57340.png"))); // NOI18N
         btnSalir.setBorderPainted(false);
@@ -221,13 +221,13 @@ public class VistaModificar extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel10.setText("Notas:");
 
-        btnIngresar.setBackground(new java.awt.Color(51, 102, 255));
-        btnIngresar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIngresar.setText("Ingresar");
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setBackground(new java.awt.Color(51, 102, 255));
+        btnGuardar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -270,7 +270,7 @@ public class VistaModificar extends javax.swing.JFrame {
                         .addComponent(jLabel10))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(146, 146, 146)
-                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 86, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -297,7 +297,7 @@ public class VistaModificar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(btnIngresar)
+                .addComponent(btnGuardar)
                 .addGap(27, 27, 27))
         );
 
@@ -319,9 +319,9 @@ public class VistaModificar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTempActionPerformed
 
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
       
-    }//GEN-LAST:event_btnIngresarActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
@@ -363,7 +363,7 @@ public class VistaModificar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSalir;
