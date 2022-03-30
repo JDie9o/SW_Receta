@@ -2,14 +2,21 @@
 package modelo;
 
 public class Ingrediente {
+    private int id;
     private String nombre;
     private int cantidad;
+
+    public Ingrediente(int id,String nombre, int cantidad) {
+        this.id=id;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+    }
 
     public Ingrediente(String nombre, int cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }
-
+    
     public Ingrediente(String nombre) {
         this.nombre = nombre;
     }
@@ -17,6 +24,14 @@ public class Ingrediente {
     public Ingrediente() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNombre() {
         return nombre;
     }

@@ -22,7 +22,8 @@ public class DAOReceta {
     private static final String SQL_SELECT_ALL = "SELECT id_receta, nombre_receta, porciones, "
             + "nota, fecha FROM receta";
     private static final String SQL_SEARCH_ID = "SELECT id_receta FROM receta WHERE nombre_receta=?";
-    private static final String SQL_INNER = "SELECT i.nombre_ingrediente,ri.Cantidad "
+    private static final String SQL_SEARCH_ID_INGRE = "SELECT id_ingredientes FROM ingredientes WHERE nombre_ingrediente=?";
+    private static final String SQL_INNER = "SELECT i.id_ingredientes,i.nombre_ingrediente,ri.Cantidad "
             + "FROM receta r INNER JOIN receta_ingredientes ri ON r.id_receta=ri.recetaid_receta "
             + "INNER JOIN ingredientes i ON ri.ingredientesid_ingredientes=i.id_ingredientes WHERE r.id_receta=?;";
     private static final Conexion con=Conexion.saberEstado();
@@ -95,7 +96,7 @@ public class DAOReceta {
             ps.setInt(1, r.getId());
             rs=ps.executeQuery();
             while(rs.next()){
-                Ingrediente i=new Ingrediente(rs.getString(1), rs.getInt(2));
+                Ingrediente i=new Ingrediente(rs.getInt(1),rs.getString(2), rs.getInt(3));
                 lista.add(i);
             }
         } catch (SQLException ex) {
@@ -103,6 +104,27 @@ public class DAOReceta {
         }finally{
             con.cerrarConexion();
         }
-         return lista;
+        return lista;
+    }
+    public Ingrediente searchIdIngre(Ingrediente i){
+        Ingrediente in = null;
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps=con.getCon().prepareStatement(SQL_SEARCH_ID_INGRE);
+            ps.setString(1, i.getNombre());
+            rs=ps.executeQuery();
+            while(rs.next()){
+                in=new Ingrediente();
+                in.setId(rs.getInt(1));
+                in.setNombre(i.getNombre());
+            }
+            return in;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            con.cerrarConexion();
+        }
+        return in;
     }
 }

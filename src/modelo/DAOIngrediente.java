@@ -29,7 +29,7 @@ public class DAOIngrediente {
             ps=con.getCon().prepareStatement(SQL_SELECT_ALL);
             rs=ps.executeQuery();
             while(rs.next()){
-                r=new Ingrediente(rs.getString(1), rs.getFloat(2));
+                r=new Ingrediente(rs.getString(1), rs.getInt(2));
                 lista.add(r);
             }
         } catch (SQLException ex) {
