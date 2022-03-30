@@ -7,6 +7,8 @@ package vista;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.DAOIngrediente;
 import modelo.Ingrediente;
 
@@ -16,11 +18,10 @@ import modelo.Ingrediente;
  */
 public class CrearReceta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VistaProd
-     */
+    DefaultTableModel modelo; 
     public CrearReceta() {
         initComponents();
+        modelo= (DefaultTableModel) tbIngredientes.getModel();
         setLocationRelativeTo(null);
         DAOIngrediente dao=new DAOIngrediente();
         ArrayList<Ingrediente> lista;
@@ -68,7 +69,7 @@ public class CrearReceta extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtNotas = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbIngredientes = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         txtTiempo = new javax.swing.JTextField();
         txtPorciones = new javax.swing.JTextField();
@@ -282,18 +283,15 @@ public class CrearReceta extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtNotas);
         jScrollPane3.setBackground(new java.awt.Color(254, 254, 204));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbIngredientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Ingrediente", "Cantidad"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbIngredientes);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel5.setText("Tiempo:");
@@ -321,11 +319,6 @@ public class CrearReceta extends javax.swing.JFrame {
         txtTemp.setBorder(null);
         txtTemp.setFocusable(false);
         txtTemp.setOpaque(false);
-        txtTemp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTempActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -410,12 +403,14 @@ public class CrearReceta extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void txtTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTempActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTempActionPerformed
-
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
+        modelo.addRow(new Object[]{LblIngre.getText(),txtCant.getText()});
+        cbIngredientes.setSelectedIndex(0);
+        txtCant.setText("");
+        LblIngre.setText("");
+        
+        
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void cbIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIngredientesActionPerformed
@@ -423,11 +418,20 @@ public class CrearReceta extends javax.swing.JFrame {
     }//GEN-LAST:event_cbIngredientesActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        JOptionPane.showMessageDialog(null, "Receta Creada Correctamente.");
         txtNombre.setText(jTextField1.getText());
         txtPorciones.setText(jTextField2.getText());
         txtTemp.setText(jTextField4.getText());
         txtTiempo.setText(jTextField3.getText());
         txtNotas.setText(txtNotas1.getText());
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        txtNotas1.setText("");
+        txtCant.setText("");
+        cbIngredientes.setSelectedIndex(0);
+        LblIngre.setText("");
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -529,11 +533,11 @@ public class CrearReceta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tbIngredientes;
     private javax.swing.JTextField txtCant;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtNotas;

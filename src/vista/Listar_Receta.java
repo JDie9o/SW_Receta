@@ -42,8 +42,6 @@ public class Listar_Receta extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         txtTiempo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtIngredientes = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtPorciones = new javax.swing.JTextField();
@@ -52,6 +50,8 @@ public class Listar_Receta extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtNotas = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tbIngredientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -166,17 +166,6 @@ public class Listar_Receta extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel3.setText("Ingredientes:");
 
-        txtIngredientes.setEditable(false);
-        txtIngredientes.setBackground(new java.awt.Color(254, 254, 204));
-        txtIngredientes.setColumns(20);
-        txtIngredientes.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtIngredientes.setRows(5);
-        txtIngredientes.setAutoscrolls(false);
-        txtIngredientes.setBorder(null);
-        txtIngredientes.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        txtIngredientes.setOpaque(false);
-        jScrollPane2.setViewportView(txtIngredientes);
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel4.setText("Porciones");
 
@@ -219,6 +208,16 @@ public class Listar_Receta extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtNotas);
         jScrollPane3.setBackground(new java.awt.Color(254, 254, 204));
 
+        tbIngredientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Ingrediente", "Cantidad"
+            }
+        ));
+        jScrollPane4.setViewportView(tbIngredientes);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -243,10 +242,10 @@ public class Listar_Receta extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
                             .addComponent(txtTemp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -258,8 +257,8 @@ public class Listar_Receta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
@@ -383,10 +382,10 @@ public class Listar_Receta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable tbIngredientes;
     private javax.swing.JTable tblRecetas;
-    private javax.swing.JTextArea txtIngredientes;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtNotas;
     private javax.swing.JTextField txtPorciones;
