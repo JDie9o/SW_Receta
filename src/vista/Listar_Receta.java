@@ -6,6 +6,10 @@
 package vista;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import modelo.DAOReceta;
+import modelo.Receta;
 
 /**
  *
@@ -13,12 +17,17 @@ import java.awt.Color;
  */
 public class Listar_Receta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VistaProd
-     */
+    ArrayList<Receta> list=new ArrayList<>();
+    DefaultTableModel modelo; 
+    DAOReceta dao=new DAOReceta();
     public Listar_Receta() {
         initComponents();
         setLocationRelativeTo(null);
+        modelo=(DefaultTableModel) tblRecetas.getModel();
+        list=dao.readAll();
+        for(int i=0;i<list.size();i++){
+            modelo.addRow(new Object[]{list.get(i).getId(),list.get(i).getNombre(),list.get(i).getF().fecha()});
+        }
     }
 
     /**
@@ -110,10 +119,7 @@ public class Listar_Receta extends javax.swing.JFrame {
         tblRecetas.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         tblRecetas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "ID", "Receta", "Fecha"
@@ -141,8 +147,8 @@ public class Listar_Receta extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(254, 254, 204));

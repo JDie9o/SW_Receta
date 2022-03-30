@@ -10,25 +10,30 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.DAOIngrediente;
+import modelo.DAOReceta;
+import modelo.Fecha;
 import modelo.Ingrediente;
+import modelo.Receta;
 
 /**
  *
  * @author ROBERTO
  */
 public class CrearReceta extends javax.swing.JFrame {
-
+    ArrayList<Ingrediente> list=new ArrayList<>();
     DefaultTableModel modelo; 
+    DAOIngrediente dao=new DAOIngrediente();
     public CrearReceta() {
         initComponents();
         modelo= (DefaultTableModel) tbIngredientes.getModel();
         setLocationRelativeTo(null);
-        DAOIngrediente dao=new DAOIngrediente();
+        
         ArrayList<Ingrediente> lista;
         lista=dao.readAll();
         for(int i=0;i<lista.size();i++){
             cbIngredientes.addItem(lista.get(i).getNombre());
         }
+        
         
     }
 
@@ -405,6 +410,7 @@ public class CrearReceta extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         modelo.addRow(new Object[]{LblIngre.getText(),txtCant.getText()});
+       list.add(new Ingrediente(dao.read(LblIngre.getText()).getId(),LblIngre.getText(), Integer.parseInt(txtCant.getText())));
         cbIngredientes.setSelectedIndex(0);
         txtCant.setText("");
         LblIngre.setText("");
@@ -424,6 +430,13 @@ public class CrearReceta extends javax.swing.JFrame {
         txtTemp.setText(jTextField4.getText());
         txtTiempo.setText(jTextField3.getText());
         txtNotas.setText(txtNotas1.getText());
+        Receta re=new Receta(Integer.parseInt(txtPorciones.getText()), txtNombre.getText(), txtNotas.getText(),txtTiempo.getText(),txtTemp.getText());
+        DAOReceta dao=new DAOReceta();
+        DAOIngrediente ingre=new DAOIngrediente();
+        dao.create(re);
+        Receta ing=dao.read(re);
+        int id=ing.getId();
+        ingre.create(id, list);
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
@@ -432,6 +445,9 @@ public class CrearReceta extends javax.swing.JFrame {
         txtCant.setText("");
         cbIngredientes.setSelectedIndex(0);
         LblIngre.setText("");
+        for(int i=0;i<list.size();i++){
+            System.out.println(list.get(i).getId());
+        }
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
