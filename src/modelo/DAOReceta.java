@@ -17,14 +17,18 @@ import java.util.logging.Logger;
  * @author DIEGO
  */
 public class DAOReceta {
-    private static final String SQL_SELECT = "SELECT id_usuario,nombre,"
-            + "apellido,correo,contra,idcargo FROM usuario WHERE correo=?";
+    private static final String SQL_SELECT = "SELECT id_receta, nombre_receta, porciones, "
+            + "nota, fecha FROM receta WHERE nombre_receta=?";
     private static final String SQL_SELECT_ALL = "SELECT id_receta, nombre_receta, porciones, "
             + "nota, fecha FROM receta";
+    private static final String SQL_SEARCH_ID = "SELECT id_receta FROM receta WHERE nombre_receta=?";
+    private static final String SQL_INNER = "SELECT i.nombre_ingrediente,ri.Cantidad "
+            + "FROM receta r INNER JOIN receta_ingredientes ri ON r.id_receta=ri.recetaid_receta "
+            + "INNER JOIN ingredientes i ON ri.ingredientesid_ingredientes=i.id_ingredientes WHERE r.id_receta=?;";
     private static final Conexion con=Conexion.saberEstado();
     
     public ArrayList<Receta> readAll(){
-        ArrayList<Receta> lista = null;
+        ArrayList<Receta> lista = new ArrayList<>();
         Receta r;
         PreparedStatement ps;
         ResultSet rs;
@@ -42,24 +46,63 @@ public class DAOReceta {
         }
         return lista;
     }
-    public Usuario read(Usuario o) {
+    public Receta read(Receta r) {
         PreparedStatement ps;
-            ResultSet res;
-            Usuario p=null;
+        ResultSet rs;
+        Receta re=null;
         try {
-            
             ps=con.getCon().prepareStatement(SQL_SELECT);
-            ps.setString(1, o.getCorreo());
-            res=ps.executeQuery();
-            while(res.next()){
-                p=new Usuario(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5),res.getInt(6));
+            ps.setString(1, r.getNombre());
+            rs=ps.executeQuery();
+            while(rs.next()){
+                re=new Receta(rs.getInt(1), rs.getInt(3), rs.getString(2), rs.getString(4), rs.getString(5));
             }
-            return p;
+            return re;
         } catch (SQLException ex) {
             Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             con.cerrarConexion();
         }
-         return p;
+         return re;
+    }
+    public Receta searchId(Receta r){
+        PreparedStatement ps;
+        ResultSet rs;
+        Receta re=null;
+        try {
+            ps=con.getCon().prepareStatement(SQL_SEARCH_ID);
+            ps.setString(1, r.getNombre());
+            rs=ps.executeQuery();
+            while(rs.next()){
+                re=new Receta();
+                re.setId(rs.getInt(1));
+                re.setNombre(r.getNombre());
+            }
+            return re;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            con.cerrarConexion();
+        }
+         return re;
+    }
+    public ArrayList<Ingrediente> readIn(Receta r){
+        ArrayList<Ingrediente> lista = new ArrayList<>();
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps=con.getCon().prepareStatement(SQL_INNER);
+            ps.setInt(1, r.getId());
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Ingrediente i=new Ingrediente(rs.getString(1), rs.getInt(2));
+                lista.add(i);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            con.cerrarConexion();
+        }
+         return lista;
     }
 }

@@ -3,9 +3,9 @@ package modelo;
 
 public class Ingrediente {
     private String nombre;
-    private float cantidad;
+    private int cantidad;
 
-    public Ingrediente(String nombre, float cantidad) {
+    public Ingrediente(String nombre, int cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }
@@ -29,7 +29,7 @@ public class Ingrediente {
         return cantidad;
     }
 
-    public void setCantidad(float cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
     

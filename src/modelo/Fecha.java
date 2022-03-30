@@ -14,7 +14,7 @@ public class Fecha {
     }
 
     public Fecha(String fecha) {
-        String[] fechaSeparada = fecha.split("/");
+        String[] fechaSeparada = fecha.split("-");
         this.dia = Integer.valueOf(fechaSeparada[0]);
         this.mes = Integer.valueOf(fechaSeparada[1]);
         this.anio = Integer.valueOf(fechaSeparada[2]);
