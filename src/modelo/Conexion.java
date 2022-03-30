@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+//asdasda
 public class Conexion {
     public static Conexion instance;
     private Connection con;
