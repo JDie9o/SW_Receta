@@ -107,12 +107,22 @@ public class VistaPnd extends javax.swing.JFrame {
         btnListar.setContentAreaFilled(false);
         btnListar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnListar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pics/kisspng-chef-cooking-food-recipe-chefs-vector-5adaa26cf38017.1760676115242778689974 (2).png"))); // NOI18N
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pics/kisspng-chef-cooking-food-recipe-chefs-vector-5adaa26cf38017.1760676115242778689974 (1).png"))); // NOI18N
         btnCrear.setBorderPainted(false);
         btnCrear.setContentAreaFilled(false);
         btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCrear.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pics/kisspng-chef-cooking-food-recipe-chefs-vector-5adaa26cf38017.1760676115242778689974 (2).png"))); // NOI18N
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pics/kisspng-chef-cooking-food-recipe-chefs-vector-5adaa26cf38017.1760676115242778689974 (1).png"))); // NOI18N
         btnModificar.setBorderPainted(false);
@@ -224,6 +234,18 @@ public class VistaPnd extends javax.swing.JFrame {
         v.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        CrearReceta v=new CrearReceta();
+        v.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        Listar_Receta v=new Listar_Receta();
+        v.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnListarActionPerformed
 
     /**
      * @param args the command line arguments

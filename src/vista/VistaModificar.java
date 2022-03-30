@@ -16,6 +16,7 @@ public class VistaModificar extends javax.swing.JFrame {
      */
     public VistaModificar() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -42,7 +43,7 @@ public class VistaModificar extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtNotas = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblIngre = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         txtTiempo = new javax.swing.JTextField();
         txtPorciones = new javax.swing.JTextField();
@@ -52,6 +53,7 @@ public class VistaModificar extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(211, 222, 220));
@@ -109,6 +111,11 @@ public class VistaModificar extends javax.swing.JFrame {
         btnRegresar.setBorderPainted(false);
         btnRegresar.setContentAreaFilled(false);
         btnRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -173,7 +180,7 @@ public class VistaModificar extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtNotas);
         jScrollPane3.setBackground(new java.awt.Color(254, 254, 204));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblIngre.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -184,7 +191,7 @@ public class VistaModificar extends javax.swing.JFrame {
                 "Title 1", "Title 2"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblIngre);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel5.setText("Tiempo:");
@@ -324,8 +331,14 @@ public class VistaModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        VistaPnd v=new VistaPnd();
+        this.setVisible(false);
+        v.setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,7 +393,7 @@ public class VistaModificar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblIngre;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtNotas;
     private javax.swing.JTextField txtPorciones;

@@ -219,6 +219,9 @@
               <Image iconType="3" name="/pics/kisspng-chef-cooking-food-recipe-chefs-vector-5adaa26cf38017.1760676115242778689974 (2).png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCrear">
           <Properties>
@@ -234,6 +237,9 @@
               <Image iconType="3" name="/pics/kisspng-chef-cooking-food-recipe-chefs-vector-5adaa26cf38017.1760676115242778689974 (2).png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnModificar">
           <Properties>
