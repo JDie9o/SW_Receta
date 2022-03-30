@@ -320,23 +320,7 @@ public class VistaModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTempActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        Usuario us=new Usuario();
-        Usuario log=new Usuario();
-        us.setCorreo(txtcorreo.getText());
-        DAOUsuario dao=new DAOUsuario();
-        log=dao.read(us);
-        if(log.getIdcargo()==1){
-            JOptionPane.showMessageDialog(null, "Bienvenido "+log.getNombre()+" "+log.getApellido());
-            VistaPnd v=new VistaPnd();
-            v.LbNombre.setText(log.getNombre()+" "+log.getApellido());
-            v.setVisible(true);
-            this.setVisible(false);
-        }else if(log.getIdcargo()==2){
-            JOptionPane.showMessageDialog(null, "Bienvenido Empleado "+log.getNombre()+" "+log.getApellido());
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Correo y/o Contraseña Incorrectos");
-        }
+      
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
