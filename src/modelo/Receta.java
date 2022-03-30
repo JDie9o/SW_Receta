@@ -16,12 +16,14 @@ public class Receta {
     private int porciones;
     private String nombre;
     private String notas;
+    private String tiempo;
+    private String temperatura;
     private Fecha f;
 
     public Receta() {
     }
 
-    public Receta(int id, int porciones, String nombre, String notas,String fecha) {
+        public Receta(int id, int porciones, String nombre, String notas,String fecha) {
         this.id = id;
         this.porciones = porciones;
         this.nombre = nombre;
@@ -29,6 +31,22 @@ public class Receta {
         this.f = new Fecha(fecha);
     }
 
+        
+    public String getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(String tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public String getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(String temperatura) {
+        this.temperatura = temperatura;
+    }
     public Fecha getF() {
         return f;
     }
