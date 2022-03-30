@@ -10,6 +10,10 @@ public class Ingrediente {
         this.cantidad = cantidad;
     }
 
+    public Ingrediente(String nombre) {
+        this.nombre = nombre;
+    }
+
     public Ingrediente() {
     }
 

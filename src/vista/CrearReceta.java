@@ -6,6 +6,9 @@
 package vista;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import modelo.DAOIngrediente;
+import modelo.Ingrediente;
 
 /**
  *
@@ -19,9 +22,13 @@ public class CrearReceta extends javax.swing.JFrame {
     public CrearReceta() {
         initComponents();
         setLocationRelativeTo(null);
-        LblIngre.setVisible(false);
-        txtCant.setVisible(false);
-        btnAgregar.setVisible(false);
+        DAOIngrediente dao=new DAOIngrediente();
+        ArrayList<Ingrediente> lista;
+        lista=dao.readAll();
+        for(int i=0;i<lista.size();i++){
+            cbIngredientes.addItem(lista.get(i).getNombre());
+        }
+        
     }
 
     /**
@@ -146,16 +153,19 @@ public class CrearReceta extends javax.swing.JFrame {
         jScrollPane5.setViewportView(txtNotas1);
         jScrollPane3.setBackground(new java.awt.Color(254, 254, 204));
 
-        cbIngredientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbIngredientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione--" }));
         cbIngredientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbIngredientesActionPerformed(evt);
             }
         });
 
-        LblIngre.setText("Ingrediente");
-
         jTextField1.setText("Nombre Receta");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -224,9 +234,9 @@ public class CrearReceta extends javax.swing.JFrame {
                 .addComponent(cbIngredientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LblIngre)
                     .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar))
+                    .addComponent(btnAgregar)
+                    .addComponent(LblIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -280,7 +290,7 @@ public class CrearReceta extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Title 1", "Title 2"
+                "Ingrediente", "Cantidad"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -347,8 +357,8 @@ public class CrearReceta extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -405,19 +415,19 @@ public class CrearReceta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTempActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        LblIngre.setVisible(false);
-        txtCant.setVisible(false);
-        btnAgregar.setVisible(false);
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void cbIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIngredientesActionPerformed
-        LblIngre.setVisible(true);
-        txtCant.setVisible(true);
-        btnAgregar.setVisible(true);
+        LblIngre.setText((String) cbIngredientes.getSelectedItem());
     }//GEN-LAST:event_cbIngredientesActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
+        txtNombre.setText(jTextField1.getText());
+        txtPorciones.setText(jTextField2.getText());
+        txtTemp.setText(jTextField4.getText());
+        txtTiempo.setText(jTextField3.getText());
+        txtNotas.setText(txtNotas1.getText());
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -425,6 +435,10 @@ public class CrearReceta extends javax.swing.JFrame {
         this.setVisible(false);
         v.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
 
     /**
      * @param args the command line arguments
