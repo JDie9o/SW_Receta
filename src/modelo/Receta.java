@@ -13,15 +13,20 @@ import java.util.ArrayList;
  */
 public class Receta {
     private int id;
-    private ArrayList<Ingrediente> lista;
     private int porciones;
-    private String fecha;
-    private String preparacion;
     private String nombre;
     private String notas;
     private Fecha f;
 
     public Receta() {
+    }
+
+    public Receta(int id, int porciones, String nombre, String notas,String fecha) {
+        this.id = id;
+        this.porciones = porciones;
+        this.nombre = nombre;
+        this.notas = notas;
+        this.f = new Fecha(fecha);
     }
 
     public Fecha getF() {
@@ -41,36 +46,12 @@ public class Receta {
         this.id = id;
     }
 
-    public ArrayList<Ingrediente> getLista() {
-        return lista;
-    }
-
-    public void setLista(ArrayList<Ingrediente> lista) {
-        this.lista = lista;
-    }
-
     public int getPorciones() {
         return porciones;
     }
 
     public void setPorciones(int porciones) {
         this.porciones = porciones;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getPreparacion() {
-        return preparacion;
-    }
-
-    public void setPreparacion(String preparacion) {
-        this.preparacion = preparacion;
     }
 
     public String getNombre() {
