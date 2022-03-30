@@ -238,7 +238,6 @@ public class CrearReceta extends javax.swing.JFrame {
 
         txtNombre.setEditable(false);
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtNombre.setText("Nombre de la Receta");
         txtNombre.setAutoscrolls(false);
         txtNombre.setBorder(null);
         txtNombre.setFocusable(false);
@@ -248,7 +247,7 @@ public class CrearReceta extends javax.swing.JFrame {
         jLabel3.setText("Ingredientes:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel4.setText("Porciones");
+        jLabel4.setText("Porciones:");
 
         txtNotas.setBackground(new java.awt.Color(254, 254, 204));
         txtNotas.setColumns(20);
@@ -277,7 +276,6 @@ public class CrearReceta extends javax.swing.JFrame {
 
         txtTiempo.setEditable(false);
         txtTiempo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtTiempo.setText("# de Tiempo");
         txtTiempo.setAutoscrolls(false);
         txtTiempo.setBorder(null);
         txtTiempo.setFocusable(false);
@@ -285,7 +283,6 @@ public class CrearReceta extends javax.swing.JFrame {
 
         txtPorciones.setEditable(false);
         txtPorciones.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtPorciones.setText("# de Porciones");
         txtPorciones.setAutoscrolls(false);
         txtPorciones.setBorder(null);
         txtPorciones.setFocusable(false);
@@ -296,7 +293,6 @@ public class CrearReceta extends javax.swing.JFrame {
 
         txtTemp.setEditable(false);
         txtTemp.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtTemp.setText("# de Temperatura");
         txtTemp.setAutoscrolls(false);
         txtTemp.setBorder(null);
         txtTemp.setFocusable(false);
@@ -356,7 +352,7 @@ public class CrearReceta extends javax.swing.JFrame {
                 .addComponent(txtTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         txtNombre.setBackground(new java.awt.Color(254, 254, 204));
@@ -378,9 +374,9 @@ public class CrearReceta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
