@@ -159,6 +159,10 @@ public class Login extends javax.swing.JFrame {
             this.setVisible(false);
         }else if(log.getIdcargo()==2){
             JOptionPane.showMessageDialog(null, "Bienvenido Empleado "+log.getNombre()+" "+log.getApellido());
+            VistaProd v=new VistaProd();
+            v.LbNombre.setText(log.getNombre()+" "+log.getApellido());
+            v.setVisible(true);
+            this.setVisible(false);
         }
         else{
             JOptionPane.showMessageDialog(null, "Correo y/o Contraseña Incorrectos");

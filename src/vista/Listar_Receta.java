@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.DAOReceta;
+import modelo.Ingrediente;
 import modelo.Receta;
 
 /**
@@ -16,7 +17,7 @@ import modelo.Receta;
  * @author ROBERTO
  */
 public class Listar_Receta extends javax.swing.JFrame {
-
+    DefaultTableModel modelo2; 
     ArrayList<Receta> list=new ArrayList<>();
     DefaultTableModel modelo; 
     DAOReceta dao=new DAOReceta();
@@ -24,6 +25,7 @@ public class Listar_Receta extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         modelo=(DefaultTableModel) tblRecetas.getModel();
+        modelo2=(DefaultTableModel) tbIngredientes.getModel();
         list=dao.readAll();
         for(int i=0;i<list.size();i++){
             modelo.addRow(new Object[]{list.get(i).getId(),list.get(i).getNombre(),list.get(i).getF().fecha()});
@@ -125,6 +127,11 @@ public class Listar_Receta extends javax.swing.JFrame {
                 "ID", "Receta", "Fecha"
             }
         ));
+        tblRecetas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRecetasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblRecetas);
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -323,6 +330,25 @@ public class Listar_Receta extends javax.swing.JFrame {
         this.setVisible(false);
         v.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void tblRecetasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRecetasMouseClicked
+        modelo2.setRowCount(0);
+        String pd=(String) tblRecetas.getValueAt(tblRecetas.getSelectedRow(), 1);
+        Receta re=new Receta();
+        re.setNombre(pd);
+        DAOReceta dao=new DAOReceta();
+        Receta r=dao.read(re);
+        txtNombre.setText(r.getNombre());
+        txtNotas.setText(r.getNotas());
+        txtTemp.setText(r.getTemperatura()+ " °C");
+        txtTiempo.setText(r.getTiempo()+" min.");
+        txtPorciones.setText(r.getPorciones()+"");
+        ArrayList<Ingrediente> lista=dao.readIn(r);
+        for(int i=0;i<lista.size();i++){
+            modelo2.addRow(new Object[]{lista.get(i).getNombre(),lista.get(i).getCantidad()+" gr."});
+        }
+        
+    }//GEN-LAST:event_tblRecetasMouseClicked
 
     /**
      * @param args the command line arguments

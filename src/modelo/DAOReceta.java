@@ -19,6 +19,9 @@ import java.util.logging.Logger;
 public class DAOReceta {
     private static final String SQL_SELECT = "SELECT id_receta, nombre_receta, porciones, "
             + "nota, fecha ,tiempo,temperatura FROM receta WHERE nombre_receta=?";
+    private static final String SQL_INSERT = "INSERT INTO receta(`id_receta`, `nombre_receta`, "
+            + "                 `porciones`, `usuarioid_usuario`, `nota`, `fecha`, `tiempo`, "
+            + "                 `temperatura`) VALUES (null,?,?,1,?,?,?,?)";
     private static final String SQL_SELECT_ID = "SELECT id_receta, nombre_receta, porciones, "
             + "nota, fecha ,tiempo,temperatura FROM receta WHERE id_receta=?";
     private static final String SQL_SELECT_ALL = "SELECT id_receta, nombre_receta, porciones, "
@@ -168,5 +171,26 @@ public class DAOReceta {
         }finally{
             con.cerrarConexion();
         }
+    }
+    
+    public boolean create(Receta r) {
+        PreparedStatement ps;
+        try {
+            ps=con.getCon().prepareStatement(SQL_INSERT);
+                   
+            ps.setString(1, r.getNombre());
+            ps.setInt(2,r.getPorciones());
+            ps.setString(3,r.getNotas());
+            ps.setString(4,r.getF().fecha());
+            ps.setString(5,r.getTiempo());
+            ps.setString(6,r.getTemperatura());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOIngrediente.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            con.cerrarConexion();
+        }
+        return false;
     }
 }

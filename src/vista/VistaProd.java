@@ -5,17 +5,30 @@
  */
 package vista;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.DAOReceta;
+import modelo.Ingrediente;
+import modelo.Receta;
+
 /**
  *
  * @author Electronic
  */
 public class VistaProd extends javax.swing.JFrame {
-
-    /**
-     * Creates new form produccion
-     */
+    DefaultTableModel modelo2;
+    public static int cant;
     public VistaProd() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        modelo2=(DefaultTableModel) tbIngredientes.getModel();
+        DAOReceta receta = new DAOReceta();
+        ArrayList<Receta> daoReceta = receta.readAll();
+        for (Receta lista : daoReceta) {
+            System.out.println(lista.getNombre() + "\n");
+            jComboBox1.addItem(lista.getNombre());
+        }
     }
 
     /**
@@ -39,8 +52,6 @@ public class VistaProd extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         txtTiempo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtIngredientes = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtPorciones = new javax.swing.JTextField();
@@ -49,14 +60,22 @@ public class VistaProd extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtNotas = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tbIngredientes = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(124, 153, 172));
         jPanel1.setPreferredSize(new java.awt.Dimension(260, 490));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione--" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,17 +170,6 @@ public class VistaProd extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel3.setText("Ingredientes:");
 
-        txtIngredientes.setEditable(false);
-        txtIngredientes.setBackground(new java.awt.Color(254, 254, 204));
-        txtIngredientes.setColumns(20);
-        txtIngredientes.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtIngredientes.setRows(5);
-        txtIngredientes.setAutoscrolls(false);
-        txtIngredientes.setBorder(null);
-        txtIngredientes.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        txtIngredientes.setOpaque(false);
-        jScrollPane2.setViewportView(txtIngredientes);
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel4.setText("Porciones");
 
@@ -204,6 +212,16 @@ public class VistaProd extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtNotas);
         jScrollPane3.setBackground(new java.awt.Color(254, 254, 204));
 
+        tbIngredientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Ingrediente", "Cantidad"
+            }
+        ));
+        jScrollPane4.setViewportView(tbIngredientes);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -220,20 +238,21 @@ public class VistaProd extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(txtPorciones, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
                             .addComponent(txtTemp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(47, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,8 +261,8 @@ public class VistaProd extends javax.swing.JFrame {
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -272,6 +291,11 @@ public class VistaProd extends javax.swing.JFrame {
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/pics/Delete-80_icon-icons.com_57340 (1) (1).png"))); // NOI18N
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -280,7 +304,7 @@ public class VistaProd extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnSalir))
@@ -321,6 +345,29 @@ public class VistaProd extends javax.swing.JFrame {
     private void txtTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTempActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTempActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        cant=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la Cantidad a Preparar: "));
+        modelo2.setRowCount(0);
+        String pd=(String) jComboBox1.getSelectedItem();
+        Receta re=new Receta();
+        re.setNombre(pd);
+        DAOReceta dao=new DAOReceta();
+        Receta r=dao.read(re);
+        txtNombre.setText(r.getNombre());
+        txtNotas.setText(r.getNotas());
+        txtTemp.setText(r.getTemperatura()+ " °C");
+        txtTiempo.setText(r.getTiempo()+" min.");
+        txtPorciones.setText(cant+"");
+        ArrayList<Ingrediente> lista=dao.readIn(r);
+        for(int i=0;i<lista.size();i++){
+            modelo2.addRow(new Object[]{lista.get(i).getNombre(),lista.get(i).getCantidad()/r.getPorciones()*cant+" gr."});
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,9 +421,9 @@ public class VistaProd extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea txtIngredientes;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable tbIngredientes;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtNotas;
     private javax.swing.JTextField txtPorciones;

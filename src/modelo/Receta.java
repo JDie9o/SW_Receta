@@ -31,6 +31,15 @@ public class Receta {
         this.f = new Fecha(fecha);
     }
 
+    public Receta(int porciones, String nombre, String notas, String tiempo, String temperatura, Fecha f) {
+        this.porciones = porciones;
+        this.nombre = nombre;
+        this.notas = notas;
+        this.tiempo = tiempo;
+        this.temperatura = temperatura;
+        this.f = f;
+    }
+
     public Receta(int id, int porciones, String nombre, String notas, String tiempo, String temperatura, String f) {
         this.id = id;
         this.porciones = porciones;

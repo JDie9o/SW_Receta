@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vista;
 
 import java.util.ArrayList;
@@ -17,12 +13,10 @@ import modelo.Receta;
  */
 public class VistaModificar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VistaModificar
-     */
+    public static DAOReceta dao = new DAOReceta();
     public VistaModificar() {
         initComponents();
-
+        
         DAOReceta receta = new DAOReceta();
         ArrayList<Receta> daoReceta = receta.readAll();
         for (Receta lista : daoReceta) {
@@ -50,7 +44,6 @@ public class VistaModificar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        txtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -66,6 +59,7 @@ public class VistaModificar extends javax.swing.JFrame {
         tbIngredientes = new javax.swing.JTable();
         lblIdReceta = new javax.swing.JLabel();
         lblIdIngrediente = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -173,13 +167,6 @@ public class VistaModificar extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(254, 254, 204));
 
-        txtNombre.setEditable(false);
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtNombre.setAutoscrolls(false);
-        txtNombre.setBorder(null);
-        txtNombre.setFocusable(false);
-        txtNombre.setOpaque(false);
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel3.setText("Ingredientes:");
 
@@ -198,11 +185,9 @@ public class VistaModificar extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel5.setText("Tiempo:");
 
-        txtTiempo.setEditable(false);
         txtTiempo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         txtTiempo.setAutoscrolls(false);
         txtTiempo.setBorder(null);
-        txtTiempo.setFocusable(false);
         txtTiempo.setOpaque(false);
         txtTiempo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,21 +195,17 @@ public class VistaModificar extends javax.swing.JFrame {
             }
         });
 
-        txtPorciones.setEditable(false);
         txtPorciones.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         txtPorciones.setAutoscrolls(false);
         txtPorciones.setBorder(null);
-        txtPorciones.setFocusable(false);
         txtPorciones.setOpaque(false);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel6.setText("Temperatura:");
 
-        txtTemp.setEditable(false);
         txtTemp.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         txtTemp.setAutoscrolls(false);
         txtTemp.setBorder(null);
-        txtTemp.setFocusable(false);
         txtTemp.setOpaque(false);
         txtTemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,9 +249,6 @@ public class VistaModificar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -298,7 +276,9 @@ public class VistaModificar extends javax.swing.JFrame {
                         .addComponent(lblIdReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addComponent(lblIdIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))))
@@ -306,8 +286,8 @@ public class VistaModificar extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -338,7 +318,6 @@ public class VistaModificar extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        txtNombre.setBackground(new java.awt.Color(254, 254, 204));
         txtTiempo.setBackground(new java.awt.Color(254, 254, 204));
         txtPorciones.setBackground(new java.awt.Color(254, 254, 204));
         txtTemp.setBackground(new java.awt.Color(254, 254, 204));
@@ -411,9 +390,19 @@ public class VistaModificar extends javax.swing.JFrame {
         for (Ingrediente i : lista) {
             Object fila[] = new Object[2];
             fila[0] = i.getNombre();
-            fila[1] = i.getCantidad();
+            fila[1] = i.getCantidad()+" gr.";
             modelo.addRow(fila);
         }
+        
+        Receta r= new Receta();
+        r.setId(Integer.valueOf(lblIdReceta.getText()));
+        Receta re =dao.readId(r);
+        txtNombre.setText(re.getNombre());
+        txtPorciones.setText(re.getPorciones()+"");
+        txtNotas.setText(re.getNotas()+"");
+        txtTemp.setText(re.getTemperatura()+" °C");
+        
+        txtTiempo.setText(re.getTiempo()+" min.");
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void txtTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTiempoActionPerformed
@@ -423,21 +412,13 @@ public class VistaModificar extends javax.swing.JFrame {
     private void tbIngredientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngredientesMouseClicked
         int fila = tbIngredientes.getSelectedRow();
         Ingrediente i = new Ingrediente();
-        DAOReceta dao = new DAOReceta();
+        
         i.setNombre(tbIngredientes.getValueAt(fila, 0).toString());
         String cant= tbIngredientes.getValueAt(fila, 1).toString();
         float num = Float.parseFloat(cant);
         i.setCantidad((int)(num));
         lblIdIngrediente.setText(String.valueOf(dao.searchIdIngre(i).getId()));
-        Receta r= new Receta();
-        r.setId(Integer.valueOf(lblIdReceta.getText()));
-        Receta re =dao.readId(r);
-        txtNombre.setText(re.getNombre());
-        txtPorciones.setText(re.getPorciones()+"");
-        txtNotas.setText(re.getNotas()+"");
-        txtTemp.setText(re.getTemperatura()+"");
         
-        txtTiempo.setText(re.getTiempo()+"");
     }//GEN-LAST:event_tbIngredientesMouseClicked
 
     /**

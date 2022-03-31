@@ -431,7 +431,8 @@ public class CrearReceta extends javax.swing.JFrame {
         txtTemp.setText(jTextField4.getText());
         txtTiempo.setText(jTextField3.getText());
         txtNotas.setText(txtNotas1.getText());
-        Receta re=new Receta(Integer.parseInt(txtPorciones.getText()), txtNombre.getText(), txtNotas.getText(),txtTiempo.getText(),txtTemp.getText());
+        Fecha f=new Fecha();
+        Receta re=new Receta(Integer.parseInt(txtPorciones.getText()), txtNombre.getText(), txtNotas.getText(),txtTiempo.getText(),txtTemp.getText(),f);
         DAOReceta dao=new DAOReceta();
         DAOIngrediente ingre=new DAOIngrediente();
         dao.create(re);

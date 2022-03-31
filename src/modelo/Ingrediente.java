@@ -12,6 +12,11 @@ public class Ingrediente {
         this.cantidad = cantidad;
     }
 
+    public Ingrediente(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     public Ingrediente(String nombre, int cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
